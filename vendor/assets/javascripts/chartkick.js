@@ -1680,10 +1680,22 @@
       window.console.log("var data = new google.visualization.DataTable(" + data.toJSON() + ");\nvar chart = new google.visualization." + type + "(element);\nchart.draw(data, " + JSON.stringify(options) + ");");
     }
 
-    chart.chart = new this.library.visualization[type](chart.element);
-    resize(function () {
-      chart.chart.draw(data, options);
-    });
+    // chart.chart = new this.library.visualization[type](chart.element);
+    // resize(function () {
+    //   chart.chart.draw(data, options);
+    // });
+    if (type == 'ColumnChart') {
+      chart.chart = new this.library.charts.Bar(chart.element);
+      var convertedOptions = this.library.charts.Bar.convertOptions(options)
+      resize(function () {
+        chart.chart.draw(data, convertedOptions);
+      });
+    } else {
+      chart.chart = new this.library.visualization[type](chart.element);
+      resize(function () {
+        chart.chart.draw(data, options);
+      });
+    };
   };
 
   defaultExport.prototype.waitForLoaded = function waitForLoaded (chart, pack, callback) {
@@ -1703,7 +1715,8 @@
 
       // https://groups.google.com/forum/#!topic/google-visualization-api/fMKJcyA2yyI
       var loadOptions = {
-        packages: [pack],
+        // packages: [pack],
+        packages: ['corechart', 'bar'],
         callback: function () { this$1$1.runCallbacks(); }
       };
       var config = chart.__config();
