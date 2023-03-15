@@ -10325,7 +10325,7 @@
       };
     }
   }
-  var Chart$1 = /*#__PURE__*/function () {
+  var Chart = /*#__PURE__*/function () {
     function Chart(item, userConfig) {
       var _this12 = this;
       _classCallCheck$x(this, Chart);
@@ -11334,14 +11334,14 @@
     }]);
     return Chart;
   }();
-  _defineProperty$w(Chart$1, "defaults", defaults);
-  _defineProperty$w(Chart$1, "instances", instances);
-  _defineProperty$w(Chart$1, "overrides", overrides);
-  _defineProperty$w(Chart$1, "registry", registry);
-  _defineProperty$w(Chart$1, "version", version);
-  _defineProperty$w(Chart$1, "getChart", getChart);
+  _defineProperty$w(Chart, "defaults", defaults);
+  _defineProperty$w(Chart, "instances", instances);
+  _defineProperty$w(Chart, "overrides", overrides);
+  _defineProperty$w(Chart, "registry", registry);
+  _defineProperty$w(Chart, "version", version);
+  _defineProperty$w(Chart, "getChart", getChart);
   function invalidatePlugins() {
-    return each(Chart$1.instances, function (chart) {
+    return each(Chart.instances, function (chart) {
       return chart._plugins.invalidate();
     });
   }
@@ -17003,8 +17003,7 @@
   });
   var registerables = [controllers, elements, plugins, scales];
 
-  Chart$1.register.apply(Chart$1, _toConsumableArray(registerables));
-  var Chart = Chart$1;
+  Chart.register.apply(Chart, _toConsumableArray(registerables));
 
   var helpers = /*#__PURE__*/Object.freeze({
     __proto__: null,
